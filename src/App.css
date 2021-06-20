@@ -1,0 +1,8 @@
+*{
+  margin: 0;
+}
+
+.App {
+  --slack-color: rgb(55, 21, 55);
+  --slack-accent-color: rgb(77, 28, 77);
+}
