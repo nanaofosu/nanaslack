@@ -2,22 +2,10 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {db} from '../firebase'
-import { gotoChannel, selectChannelID } from '../features/appSlice';
+import { gotoChannel,  } from '../features/appSlice';
 
 function SidebarOptions({Icon, title, addOption, id, addORhash, room}) {
     const dispatch = useDispatch();
-
-    // const [open, setOpen] = useState(false);
-    // const handleIconClick = () =>{
-    //     if(openable){
-    //         setOpen(!Boolean(open))
-    //     }
-    //     if(controls){
-    //         dispatch(getControlName(
-    //             {sidebarController: 'controls'}
-    //         ))
-    //     }
-    // }
 
     const selectChannel = () =>{
         // only channels will have IDs
