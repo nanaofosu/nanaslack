@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import {db} from '../firebase'
-import { gotoChannel,  } from '../features/appSlice';
+import { gotoChannel } from '../features/appSlice';
 
 function SidebarOptions({Icon, title, addOption, id, addORhash, room}) {
     const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function SidebarOptions({Icon, title, addOption, id, addORhash, room}) {
     }
 
     const createAChannel = () => {
-        const channelName = prompt("Create a channel"); 
+        const channelName = prompt("Create a channel");  
             if(channelName){
                 db.collection(room).add({
                     name: channelName

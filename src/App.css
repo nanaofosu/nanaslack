@@ -3,6 +3,8 @@
 }
 
 .App {
-  --slack-color: rgb(55, 21, 55);
-  --slack-accent-color: rgb(77, 28, 77);
+  --slack-color: #003954;
+  --slack-accent-color: #0170a4;
+  /* --slack-color: rgb(55, 21, 55);
+  --slack-accent-color: rgb(77, 28, 77); */
 }

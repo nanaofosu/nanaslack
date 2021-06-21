@@ -1,12 +1,14 @@
-import { Avatar, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import firebase from 'firebase'
 import React, { useState } from 'react'
 import styled
  from 'styled-components'
-import { auth, db } from '../firebase'
+import { db, auth} from '../firebase'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 
-function ChatInput({channelID, channelName}) {
+function ChatInput({channelID, channelName, viewRef}) {
+    const [user] = useAuthState(auth)
 
     const [message, setMessage] = useState('');
 
@@ -20,11 +22,15 @@ function ChatInput({channelID, channelName}) {
         db.collection('channels').doc(channelID).collection('messages').add({
             message: message, 
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            username: "Nana Ofosu Budu",
-            userImage: 'https://www.whitehouse.gov/wp-content/uploads/2021/01/44_barack_obama.jpg'
-        })
+            username: user.displayName,
+            userImage: user.photoURL,
+        });
 
-        setMessage('')
+        viewRef.current.scrollIntoView({
+            behavior: 'smooth'
+        });
+
+        setMessage('');
     }
 
     return (

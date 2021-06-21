@@ -3,9 +3,12 @@ import React from 'react';
 import styled from 'styled-components';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { SearchOutlined } from '@material-ui/icons';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase';
 
 
 function Header() {
+    const [user] = useAuthState(auth)
     return (
         <HeaderContainer>
             <HeaderLeft>
@@ -16,8 +19,11 @@ function Header() {
                 <HeaderSearchBar placeholder="Search this channel"></HeaderSearchBar>
             </HeaderSearch>
             <HeaderRight>
-                <HeaderAvatar>
-                    {/* Todo: add onclick */}
+                <HeaderAvatar className="mama"
+                    onClick={()=>auth.signOut()}
+                    alt={user?.displayName}
+                    src={user?.photoURL}
+                >
                 </HeaderAvatar>
             </HeaderRight>
         </HeaderContainer>

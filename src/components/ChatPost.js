@@ -1,14 +1,13 @@
 import React from 'react'
 import { Avatar } from '@material-ui/core';
 import styled from 'styled-components';
-import { db } from '../firebase';
 
 function ChatPost({image, displayName, date, message}) {
     return (
         <ChatPostContainer>
-            <Avatar />
+            <UserAvatar alt={displayName} src={image} />
             <PostDetails>
-                <strong>{displayName}</strong> {date}
+                <strong>{displayName}</strong> <span>{new Date(date?.toDate()).toUTCString()}</span>
                 <PostMessage>
                     {message}
                 </PostMessage>
@@ -26,9 +25,19 @@ export const ChatPostContainer = styled.div`
 `;
 
 export const PostDetails = styled.div`
-
+    font-size: 13x;
+    >span{
+        font-size: 13px;
+        color: gray;
+    }
 `;
 
 export const PostMessage = styled.div`
+    margin-top: 5px
+`;
+
+export const UserAvatar = styled(Avatar)`
+border-radius: 5px !important;
+margin-right: 10px;
 
 `;

@@ -10,14 +10,13 @@ import AlternateEmailOutlinedIcon from '@material-ui/icons/AlternateEmailOutline
 import BookmarkBorderOutlinedIcon from '@material-ui/icons/BookmarkBorderOutlined';
 import MoreVertOutlinedIcon from '@material-ui/icons/MoreVertOutlined';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import {db} from '../firebase'
+import {db, auth} from '../firebase'
 import {useCollection} from "react-firebase-hooks/firestore"
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function Sidebar() {
-    const [channels, loading, error] = useCollection(db.collection("channels"))
-
-    
-
+    const [channels] = useCollection(db.collection("channels"));
+    const [user] =useAuthState(auth);
     
     return (
        <SidebarContainer>
@@ -29,7 +28,7 @@ function Sidebar() {
                 <h3>
                 {/* <EditOutlinedIcon /> */}
                 <FiberManualRecordSharpIcon />
-                    Nana Ofosu
+                    {user.displayName}
                 </h3>
                </SidebarInfo>
                <EditOutlinedIcon />
@@ -68,14 +67,14 @@ export const SidebarContainer = styled.div`
     background-color: var(--slack-color);
     color: #fff;
     flex: 0.3;
-    border-top: 1px solid #49274b;
+    border-top: 1px solid #01547b;
     max-width: 300px;
 
 `;
 
 export const SidebarHeader = styled.div`
     display: flex;
-    border: 1px solid #49274b;
+    border: 1px solid #01547b;
     padding: 13px;
     justify-content: space-between;
 
@@ -102,6 +101,7 @@ export const SidebarInfo = styled.div`
         .MuiSvgIcon-root{
             font-size: 14px;
             margin-right: 3px;
+            color: green;
         }
     }
 
